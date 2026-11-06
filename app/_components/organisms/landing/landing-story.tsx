@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { Badge } from "@/components/atoms/badge";
-import { Icon } from "@/components/atoms/icon";
-import { SectionLabel } from "@/components/atoms/misc";
+﻿import Link from "next/link";
+import { Badge } from "@/app/_components/atoms/badge";
+import { Icon } from "@/app/_components/atoms/icon";
+import { SectionLabel } from "@/app/_components/atoms/misc";
 import { DemoButton } from "./demo-button";
 
 const steps = [
@@ -43,7 +43,7 @@ const templates = [
     category: "Customer experience",
     title: "Customer Experience Pulse",
     description:
-      "A short monthly check-in on how customers feel about working with you — and where you can make their day lighter.",
+      "A short monthly check-in on how customers feel about working with you â€” and where you can make their day lighter.",
     responses: "384 responses",
     accent: "#0d5947",
     accentSoft: "#e2ede7",
@@ -63,7 +63,7 @@ const templates = [
     category: "Product research",
     title: "Product Discovery Interviews",
     description:
-      "Open-ended prompts designed to uncover the jobs people are trying to get done — in their own words.",
+      "Open-ended prompts designed to uncover the jobs people are trying to get done â€” in their own words.",
     responses: "96 responses",
     accent: "#517486",
     accentSoft: "#e6eef2",
@@ -156,13 +156,13 @@ export function HowItWorks() {
       <div className="mx-auto w-full max-w-[1180px] px-5 py-18 sm:px-8 sm:py-24">
         <div className="grid gap-6 md:grid-cols-[1.15fr_0.85fr] md:items-end">
           <div>
-            <SectionLabel>02 — How it works</SectionLabel>
+            <SectionLabel>02 â€” How it works</SectionLabel>
             <h2 className="mt-3 text-balance font-display text-[clamp(2rem,4.2vw,3.15rem)] leading-[1.04] tracking-[-0.035em]">
               From a hunch to a decision in three moves.
             </h2>
           </div>
           <p className="max-w-[400px] text-[14px] leading-relaxed text-ink-soft md:justify-self-end">
-            The best research is rarely complicated. It is simply well considered — written
+            The best research is rarely complicated. It is simply well considered â€” written
             clearly, shared generously, and read with care.
           </p>
         </div>
@@ -200,7 +200,7 @@ export function TemplateLibrary() {
       <div className="mx-auto w-full max-w-[1180px] px-5 py-18 sm:px-8 sm:py-24">
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <div className="max-w-[620px]">
-            <SectionLabel>03 — Survey library</SectionLabel>
+            <SectionLabel>03 â€” Survey library</SectionLabel>
             <h2 className="mt-3 text-balance font-display text-[clamp(2rem,4.2vw,3.15rem)] leading-[1.04] tracking-[-0.035em]">
               A head start for questions that matter.
             </h2>
@@ -316,7 +316,7 @@ export function Manifesto() {
         <div>
           <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-cream/55">
             <span className="h-1.5 w-1.5 rounded-full bg-coral" />
-            04 — What we believe
+            04 â€” What we believe
           </p>
           <h2 className="mt-5 max-w-[540px] text-balance font-display text-[clamp(2.1rem,4.5vw,3.5rem)] font-light leading-[1.02] tracking-[-0.035em] text-cream">
             A survey is a conversation with a purpose.

@@ -1,4 +1,4 @@
-import { cn, clamp } from "@/lib/utils";
+﻿import { cn, clamp } from "@/app/_lib/utils";
 
 interface ProgressProps {
   value: number;

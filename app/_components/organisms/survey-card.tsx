@@ -1,18 +1,18 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Badge } from "@/components/atoms/badge";
-import { Icon } from "@/components/atoms/icon";
-import { DropdownMenu } from "@/components/molecules/dropdown";
-import { ConfirmDialog } from "@/components/molecules/modal";
-import { StatusBadge } from "@/components/molecules/status-badge";
-import { useToast } from "@/components/molecules/toast";
-import { responseCount } from "@/lib/analytics";
-import { surveyActions, useSurveyStore } from "@/lib/store";
-import type { Survey } from "@/lib/types";
-import { cn, formatNumber, formatRelative } from "@/lib/utils";
+import { Badge } from "@/app/_components/atoms/badge";
+import { Icon } from "@/app/_components/atoms/icon";
+import { DropdownMenu } from "@/app/_components/molecules/dropdown";
+import { ConfirmDialog } from "@/app/_components/molecules/modal";
+import { StatusBadge } from "@/app/_components/molecules/status-badge";
+import { useToast } from "@/app/_components/molecules/toast";
+import { responseCount } from "@/app/_lib/analytics";
+import { surveyActions, useSurveyStore } from "@/app/_lib/store";
+import type { Survey } from "@/app/_lib/types";
+import { cn, formatNumber, formatRelative } from "@/app/_lib/utils";
 
 async function copySurveyLink(survey: Survey, notify: (title: string, description?: string) => void) {
   const url = `${window.location.origin}/s/${survey.slug}`;
@@ -130,10 +130,10 @@ export function SurveyActionsMenu({
         onConfirm={() => {
           surveyActions.remove(survey.id);
           setConfirmDelete(false);
-          toast.info("Survey deleted", `“${survey.title}” and its responses were removed.`);
+          toast.info("Survey deleted", `â€œ${survey.title}â€ and its responses were removed.`);
         }}
         title="Delete this survey?"
-        description={`“${survey.title}” and all of its responses will be permanently removed from this browser. This can't be undone.`}
+        description={`â€œ${survey.title}â€ and all of its responses will be permanently removed from this browser. This can't be undone.`}
         confirmLabel="Delete survey"
       />
 
@@ -146,7 +146,7 @@ export function SurveyActionsMenu({
           toast.info("Responses closed", "The survey remains viewable but no longer accepts replies.");
         }}
         title="Close this survey?"
-        description={`“${survey.title}” will stop accepting new responses. You can reopen it at any time.`}
+        description={`â€œ${survey.title}â€ will stop accepting new responses. You can reopen it at any time.`}
         confirmLabel="Close responses"
         tone="primary"
       />
@@ -177,7 +177,7 @@ function SurveyCard({ survey }: { survey: Survey }) {
             {survey.title}
           </h3>
           <p className="mt-1.5 line-clamp-2 min-h-[34px] text-[12px] leading-relaxed text-ink-soft">
-            {survey.description || "No description yet — add one in the builder."}
+            {survey.description || "No description yet â€” add one in the builder."}
           </p>
         </Link>
 
@@ -246,7 +246,7 @@ function SurveyRow({ survey }: { survey: Survey }) {
           {survey.title}
         </p>
         <p className="mt-0.5 truncate font-mono text-[8.5px] uppercase tracking-[0.06em] text-ink-faint">
-          {survey.category} · updated {formatRelative(survey.updatedAt)}
+          {survey.category} Â· updated {formatRelative(survey.updatedAt)}
         </p>
       </Link>
       <div className="hidden shrink-0 text-right md:block">

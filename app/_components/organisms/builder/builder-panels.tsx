@@ -1,16 +1,16 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Input, Select, Textarea } from "@/components/atoms/input";
-import { Logo } from "@/components/atoms/logo";
-import { SectionLabel, Switch } from "@/components/atoms/misc";
-import { Progress } from "@/components/atoms/progress";
-import { SurveyQuestionField } from "@/components/molecules/survey-question";
-import { surveyAccents, surveyCategories } from "@/lib/survey-factory";
-import type { AnswerValue, Survey, SurveyTheme } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input, Select, Textarea } from "@/app/_components/atoms/input";
+import { Logo } from "@/app/_components/atoms/logo";
+import { SectionLabel, Switch } from "@/app/_components/atoms/misc";
+import { Progress } from "@/app/_components/atoms/progress";
+import { SurveyQuestionField } from "@/app/_components/molecules/survey-question";
+import { surveyAccents, surveyCategories } from "@/app/_lib/survey-factory";
+import type { AnswerValue, Survey, SurveyTheme } from "@/app/_lib/types";
+import { cn } from "@/app/_lib/utils";
 
 interface SurveyPreviewProps {
   survey: Survey;
@@ -269,7 +269,7 @@ export function SurveySettings({
             </button>
           </div>
           <p className="mt-1 text-[9px] text-ink-faint">
-            {isLive ? "Live — anyone with this link can respond." : "Publishing activates this link."}
+            {isLive ? "Live â€” anyone with this link can respond." : "Publishing activates this link."}
           </p>
         </div>
       </div>

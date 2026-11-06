@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   createContext,
@@ -10,9 +10,9 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { cn } from "@/lib/utils";
-import { Icon, type IconName } from "@/components/atoms/icon";
-import type { ToastMessage, ToastVariant } from "@/lib/types";
+import { cn } from "@/app/_lib/utils";
+import { Icon, type IconName } from "@/app/_components/atoms/icon";
+import type { ToastMessage, ToastVariant } from "@/app/_lib/types";
 
 interface ToastInput {
   title: string;

@@ -1,12 +1,12 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Icon } from "@/components/atoms/icon";
-import { Kbd } from "@/components/atoms/misc";
-import { NotificationsMenu } from "@/components/organisms/notifications-menu";
-import { UserMenu } from "@/components/organisms/user-menu";
-import { pageLabels } from "@/lib/navigation";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Kbd } from "@/app/_components/atoms/misc";
+import { NotificationsMenu } from "@/app/_components/organisms/notifications-menu";
+import { UserMenu } from "@/app/_components/organisms/user-menu";
+import { pageLabels } from "@/app/_lib/navigation";
 
 interface AppTopbarProps {
   onOpenSearch: () => void;
@@ -77,7 +77,7 @@ export function AppTopbar({
         >
           <Icon name="search" size={14} />
           <span className="pr-6">Search</span>
-          <Kbd>⌘K</Kbd>
+          <Kbd>âŒ˜K</Kbd>
         </button>
         <button
           type="button"

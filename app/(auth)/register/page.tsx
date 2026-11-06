@@ -1,18 +1,18 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Input } from "@/components/atoms/input";
-import { Spinner } from "@/components/atoms/spinner";
-import { AuthHeading } from "@/components/molecules/auth-heading";
-import { FormField, PasswordHint } from "@/components/molecules/form-field";
-import { PasswordInput } from "@/components/molecules/password-input";
-import { useToast } from "@/components/molecules/toast";
-import { demoProfile, sessionActions, useSession } from "@/lib/session";
-import { isEmail, passwordLabel, passwordScore } from "@/lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input } from "@/app/_components/atoms/input";
+import { Spinner } from "@/app/_components/atoms/spinner";
+import { AuthHeading } from "@/app/_components/molecules/auth-heading";
+import { FormField, PasswordHint } from "@/app/_components/molecules/form-field";
+import { PasswordInput } from "@/app/_components/molecules/password-input";
+import { useToast } from "@/app/_components/molecules/toast";
+import { demoProfile, sessionActions, useSession } from "@/app/_lib/session";
+import { isEmail, passwordLabel, passwordScore } from "@/app/_lib/utils";
 
 interface RegisterErrors {
   name?: string;

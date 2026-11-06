@@ -1,8 +1,8 @@
-import { Avatar } from "@/components/atoms/avatar";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Logo } from "@/components/atoms/logo";
-import { AreaChart, DonutChart, Sparkline } from "@/components/molecules/charts";
+﻿import { Avatar } from "@/app/_components/atoms/avatar";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Logo } from "@/app/_components/atoms/logo";
+import { AreaChart, DonutChart, Sparkline } from "@/app/_components/molecules/charts";
 import { DemoButton } from "./demo-button";
 
 const trend = [
@@ -279,7 +279,7 @@ export function LandingHero() {
             style={{ animationDelay: "120ms" }}
           >
             Write surveys that respect people&apos;s time. Share them anywhere. Understand
-            what people actually mean — all in one calm, beautifully made workspace.
+            what people actually mean â€” all in one calm, beautifully made workspace.
           </p>
 
           <div

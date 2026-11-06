@@ -1,7 +1,7 @@
-"use client";
+﻿"use client";
 
 import { useId, useMemo, useState } from "react";
-import { cn, formatCompact, formatNumber } from "@/lib/utils";
+import { cn, formatCompact, formatNumber } from "@/app/_lib/utils";
 
 interface ChartPoint {
   label: string;

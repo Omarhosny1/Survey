@@ -1,17 +1,17 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Input } from "@/components/atoms/input";
-import { Logo } from "@/components/atoms/logo";
-import { Progress } from "@/components/atoms/progress";
-import { Spinner } from "@/components/atoms/spinner";
-import { SurveyQuestionField } from "@/components/molecules/survey-question";
-import { surveyActions, useSurveyStore } from "@/lib/store";
-import type { AnswerValue, SurveyResponse } from "@/lib/types";
-import { formatDate, isEmail, uid } from "@/lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input } from "@/app/_components/atoms/input";
+import { Logo } from "@/app/_components/atoms/logo";
+import { Progress } from "@/app/_components/atoms/progress";
+import { Spinner } from "@/app/_components/atoms/spinner";
+import { SurveyQuestionField } from "@/app/_components/molecules/survey-question";
+import { surveyActions, useSurveyStore } from "@/app/_lib/store";
+import type { AnswerValue, SurveyResponse } from "@/app/_lib/types";
+import { formatDate, isEmail, uid } from "@/app/_lib/utils";
 
 interface PublicSurveyProps {
   slug: string;
@@ -46,7 +46,7 @@ function PublicShell({ children }: { children: React.ReactNode }) {
 
       <footer className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-2 px-5 py-5 text-center sm:flex-row sm:text-left">
         <p className="text-[9.5px] text-ink-faint">
-          Demo survey · responses are stored in this browser only.
+          Demo survey Â· responses are stored in this browser only.
         </p>
         <Link
           href="/"
@@ -125,7 +125,7 @@ export function PublicSurvey({ slug }: PublicSurveyProps) {
         <NoticeCard
           icon="search"
           eyebrow="Link not found"
-          title="This survey isn’t available"
+          title="This survey isnâ€™t available"
           description="The link may be incorrect, or the survey may have been removed. Double-check the URL and try again."
         />
       </PublicShell>
@@ -138,7 +138,7 @@ export function PublicSurvey({ slug }: PublicSurveyProps) {
         <NoticeCard
           icon="lock"
           eyebrow="Private draft"
-          title="This survey isn’t published yet"
+          title="This survey isnâ€™t published yet"
           description="The owner is still working on it. Once they publish, this link will open the live survey."
         />
       </PublicShell>

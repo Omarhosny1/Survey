@@ -1,13 +1,13 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Logo } from "@/components/atoms/logo";
-import { Icon } from "@/components/atoms/icon";
-import { SectionLabel } from "@/components/atoms/misc";
-import { UserMenu } from "@/components/organisms/user-menu";
-import { navGroups } from "@/lib/navigation";
-import { cn } from "@/lib/utils";
+import { Logo } from "@/app/_components/atoms/logo";
+import { Icon } from "@/app/_components/atoms/icon";
+import { SectionLabel } from "@/app/_components/atoms/misc";
+import { UserMenu } from "@/app/_components/organisms/user-menu";
+import { navGroups } from "@/app/_lib/navigation";
+import { cn } from "@/app/_lib/utils";
 
 interface AppSidebarProps {
   collapsed?: boolean;

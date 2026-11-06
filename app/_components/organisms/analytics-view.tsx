@@ -1,15 +1,15 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { Button } from "@/components/atoms/button";
-import { Icon, type IconName } from "@/components/atoms/icon";
-import { SectionLabel } from "@/components/atoms/misc";
-import { Select } from "@/components/atoms/input";
-import { AreaChart, BarList, DonutChart, Sparkline } from "@/components/molecules/charts";
-import { EmptyState } from "@/components/molecules/empty-state";
-import { PageHeader } from "@/components/molecules/section-heading";
-import { Segmented } from "@/components/molecules/segmented";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon, type IconName } from "@/app/_components/atoms/icon";
+import { SectionLabel } from "@/app/_components/atoms/misc";
+import { Select } from "@/app/_components/atoms/input";
+import { AreaChart, BarList, DonutChart, Sparkline } from "@/app/_components/molecules/charts";
+import { EmptyState } from "@/app/_components/molecules/empty-state";
+import { PageHeader } from "@/app/_components/molecules/section-heading";
+import { Segmented } from "@/app/_components/molecules/segmented";
 import {
   answeredCount,
   averageDuration,
@@ -25,10 +25,10 @@ import {
   textAnswers,
   topSurvey,
   trendDelta,
-} from "@/lib/analytics";
-import { useSurveyStore } from "@/lib/store";
-import type { Survey } from "@/lib/types";
-import { cn, formatCompact, formatDuration, formatNumber } from "@/lib/utils";
+} from "@/app/_lib/analytics";
+import { useSurveyStore } from "@/app/_lib/store";
+import type { Survey } from "@/app/_lib/types";
+import { cn, formatCompact, formatDuration, formatNumber } from "@/app/_lib/utils";
 
 type RangeDays = 7 | 14 | 30;
 
@@ -80,7 +80,7 @@ function QuestionAnalysis({ survey, responses }: { survey: Survey; responses: Re
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="font-mono text-[8px] uppercase tracking-[0.1em] text-ink-faint">
-                  Question {String(index + 1).padStart(2, "0")} ·{" "}
+                  Question {String(index + 1).padStart(2, "0")} Â·{" "}
                   {question.type === "multiple_choice" ? "Multiple choice" : "Long answer"}
                 </p>
                 <h3 className="mt-1.5 text-pretty text-[13.5px] font-medium leading-relaxed text-ink">
@@ -158,7 +158,7 @@ export function AnalyticsView({ initialSurveyId }: { initialSurveyId?: string })
   const completionSeries = useMemo(() => dayCompletionSeries(scoped, range), [scoped, range]);
   const bestPoint = trend.reduce(
     (best, point) => (point.value > best.value ? point : best),
-    trend[0] ?? { label: "—", value: 0, previousValue: 0, date: "" },
+    trend[0] ?? { label: "â€”", value: 0, previousValue: 0, date: "" },
   );
   const averagePerDay = rangeTotal > 0 ? (rangeTotal / range).toFixed(1) : "0";
   const insights = getInsights(state, surveyFilter);
@@ -310,7 +310,7 @@ export function AnalyticsView({ initialSurveyId }: { initialSurveyId?: string })
                 <span className="text-[12px] text-ink-faint">responses</span>
               </div>
               <p className="mt-2 text-[10.5px] text-ink-faint">
-                {activeSurvey ? activeSurvey.title : "Across all surveys"} · last {range} days
+                {activeSurvey ? activeSurvey.title : "Across all surveys"} Â· last {range} days
               </p>
             </div>
             <Button
@@ -331,7 +331,7 @@ export function AnalyticsView({ initialSurveyId }: { initialSurveyId?: string })
             <span>
               Best day{" "}
               <span className="font-medium text-ink">
-                {bestPoint.label} · {formatNumber(bestPoint.value)}
+                {bestPoint.label} Â· {formatNumber(bestPoint.value)}
               </span>
             </span>
             <span>
@@ -459,7 +459,7 @@ export function AnalyticsView({ initialSurveyId }: { initialSurveyId?: string })
             <h2 className="font-display text-xl tracking-tight text-ink">Question-level results</h2>
             <p className="mt-1 text-[10.5px] text-ink-faint">
               {breakdownSurvey
-                ? `${breakdownSurvey.title} · ${formatNumber(breakdownResponses.length)} responses, all time`
+                ? `${breakdownSurvey.title} Â· ${formatNumber(breakdownResponses.length)} responses, all time`
                 : "Select a survey to explore its answers."}
             </p>
           </div>

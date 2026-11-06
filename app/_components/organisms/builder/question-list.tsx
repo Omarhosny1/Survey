@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 
 import { useState, type DragEvent } from "react";
-import { Icon } from "@/components/atoms/icon";
-import { DropdownMenu } from "@/components/molecules/dropdown";
-import { SectionLabel } from "@/components/atoms/misc";
-import type { Question, Survey } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { Icon } from "@/app/_components/atoms/icon";
+import { DropdownMenu } from "@/app/_components/molecules/dropdown";
+import { SectionLabel } from "@/app/_components/atoms/misc";
+import type { Question, Survey } from "@/app/_lib/types";
+import { cn } from "@/app/_lib/utils";
 
 interface QuestionListProps {
   survey: Survey;
@@ -57,7 +57,7 @@ export function QuestionList({
     <div className={cn("flex h-full min-h-0 flex-col", className)}>
       <div className="flex items-center justify-between px-3 pb-2 pt-3">
         <SectionLabel>
-          Questions · {survey.questions.length}
+          Questions Â· {survey.questions.length}
         </SectionLabel>
         <button
           type="button"
@@ -186,7 +186,7 @@ export function QuestionList({
           Add question
         </button>
         <p className="mt-2 text-center text-[9px] leading-relaxed text-ink-faint/80">
-          Drag questions to reorder · changes save when you choose Save
+          Drag questions to reorder Â· changes save when you choose Save
         </p>
       </div>
     </div>

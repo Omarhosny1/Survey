@@ -1,6 +1,6 @@
-import { Icon, type IconName } from "@/components/atoms/icon";
-import type { ActivityType } from "@/lib/types";
-import { cn } from "@/lib/utils";
+﻿import { Icon, type IconName } from "@/app/_components/atoms/icon";
+import type { ActivityType } from "@/app/_lib/types";
+import { cn } from "@/app/_lib/utils";
 
 export const activityIconName: Record<ActivityType, IconName> = {
   published: "globe",

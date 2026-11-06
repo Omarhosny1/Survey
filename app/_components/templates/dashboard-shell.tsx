@@ -1,14 +1,14 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { AppSidebar } from "@/components/organisms/app-sidebar";
-import { AppTopbar } from "@/components/organisms/app-topbar";
-import { CommandPalette } from "@/components/organisms/command-palette";
-import { Logo } from "@/components/atoms/logo";
-import { Spinner } from "@/components/atoms/spinner";
-import { useSession } from "@/lib/session";
-import { cn } from "@/lib/utils";
+import { AppSidebar } from "@/app/_components/organisms/app-sidebar";
+import { AppTopbar } from "@/app/_components/organisms/app-topbar";
+import { CommandPalette } from "@/app/_components/organisms/command-palette";
+import { Logo } from "@/app/_components/atoms/logo";
+import { Spinner } from "@/app/_components/atoms/spinner";
+import { useSession } from "@/app/_lib/session";
+import { cn } from "@/app/_lib/utils";
 
 function WorkspaceLoader() {
   return (

@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { cn } from "@/lib/utils";
-import { Icon, type IconName } from "@/components/atoms/icon";
+import { cn } from "@/app/_lib/utils";
+import { Icon, type IconName } from "@/app/_components/atoms/icon";
 
 export interface DropdownItem {
   label: string;

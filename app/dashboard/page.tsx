@@ -1,15 +1,15 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { ActivityIcon } from "@/components/atoms/activity-icon";
-import { Button } from "@/components/atoms/button";
-import { Icon, type IconName } from "@/components/atoms/icon";
-import { SectionLabel } from "@/components/atoms/misc";
-import { AreaChart, DonutChart, Sparkline } from "@/components/molecules/charts";
-import { Segmented } from "@/components/molecules/segmented";
-import { StatusBadge } from "@/components/molecules/status-badge";
-import { PageHeader } from "@/components/molecules/section-heading";
+import { ActivityIcon } from "@/app/_components/atoms/activity-icon";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon, type IconName } from "@/app/_components/atoms/icon";
+import { SectionLabel } from "@/app/_components/atoms/misc";
+import { AreaChart, DonutChart, Sparkline } from "@/app/_components/molecules/charts";
+import { Segmented } from "@/app/_components/molecules/segmented";
+import { StatusBadge } from "@/app/_components/molecules/status-badge";
+import { PageHeader } from "@/app/_components/molecules/section-heading";
 import {
   averageDuration,
   buildTrend,
@@ -22,9 +22,9 @@ import {
   statusCounts,
   todayCount,
   trendDelta,
-} from "@/lib/analytics";
-import { useSession } from "@/lib/session";
-import { useSurveyStore } from "@/lib/store";
+} from "@/app/_lib/analytics";
+import { useSession } from "@/app/_lib/session";
+import { useSurveyStore } from "@/app/_lib/store";
 import {
   formatCompact,
   formatDuration,
@@ -32,7 +32,7 @@ import {
   formatRelative,
   formatRelativeTime,
   greeting,
-} from "@/lib/utils";
+} from "@/app/_lib/utils";
 
 type RangeDays = 7 | 14 | 30;
 
@@ -98,7 +98,7 @@ export default function DashboardOverviewPage() {
   const completionSeries = useMemo(() => dayCompletionSeries(responses, 14), [responses]);
   const bestPoint = trend.reduce(
     (best, point) => (point.value > best.value ? point : best),
-    trend[0] ?? { label: "—", value: 0, previousValue: 0, date: "" },
+    trend[0] ?? { label: "â€”", value: 0, previousValue: 0, date: "" },
   );
   const averagePerDay = rangeTotal > 0 ? (rangeTotal / range).toFixed(1) : "0";
   const firstName = profile?.name.split(" ")[0] ?? "there";
@@ -182,7 +182,7 @@ export default function DashboardOverviewPage() {
           meta={
             <>
               <span className="text-ink-soft">
-                {counts.draft} drafts · {counts.closed} closed
+                {counts.draft} drafts Â· {counts.closed} closed
               </span>
             </>
           }
@@ -288,7 +288,7 @@ export default function DashboardOverviewPage() {
             <span>
               Best day{" "}
               <span className="font-medium text-ink">
-                {bestPoint.label} · {formatNumber(bestPoint.value)}
+                {bestPoint.label} Â· {formatNumber(bestPoint.value)}
               </span>
             </span>
             <span>
@@ -413,7 +413,7 @@ export default function DashboardOverviewPage() {
                       {survey.title}
                     </p>
                     <p className="mt-0.5 truncate font-mono text-[9px] uppercase tracking-[0.06em] text-ink-faint">
-                      {survey.category} · updated {formatRelative(survey.updatedAt)}
+                      {survey.category} Â· updated {formatRelative(survey.updatedAt)}
                     </p>
                   </div>
                   <div className="hidden shrink-0 text-right sm:block">

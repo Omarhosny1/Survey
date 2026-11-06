@@ -1,12 +1,12 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/navigation";
-import { DropdownMenu } from "@/components/molecules/dropdown";
-import { Avatar } from "@/components/atoms/avatar";
-import { Icon } from "@/components/atoms/icon";
-import { useToast } from "@/components/molecules/toast";
-import { sessionActions, useSession } from "@/lib/session";
-import { cn } from "@/lib/utils";
+import { DropdownMenu } from "@/app/_components/molecules/dropdown";
+import { Avatar } from "@/app/_components/atoms/avatar";
+import { Icon } from "@/app/_components/atoms/icon";
+import { useToast } from "@/app/_components/molecules/toast";
+import { sessionActions, useSession } from "@/app/_lib/session";
+import { cn } from "@/app/_lib/utils";
 
 interface UserMenuProps {
   variant?: "sidebar" | "topbar";

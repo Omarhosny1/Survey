@@ -1,12 +1,12 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Modal } from "@/components/molecules/modal";
-import { Icon, type IconName } from "@/components/atoms/icon";
-import { Kbd, SectionLabel } from "@/components/atoms/misc";
-import { useSurveyStore } from "@/lib/store";
-import { cn } from "@/lib/utils";
+import { Modal } from "@/app/_components/molecules/modal";
+import { Icon, type IconName } from "@/app/_components/atoms/icon";
+import { Kbd, SectionLabel } from "@/app/_components/atoms/misc";
+import { useSurveyStore } from "@/app/_lib/store";
+import { cn } from "@/app/_lib/utils";
 
 interface CommandPaletteProps {
   open: boolean;
@@ -67,7 +67,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
       .map((survey) => ({
         id: `survey-${survey.id}`,
         label: survey.title,
-        hint: `${survey.category} · ${survey.questions.length} questions`,
+        hint: `${survey.category} Â· ${survey.questions.length} questions`,
         icon: "file" as IconName,
         group: term ? "Surveys" : "Recent surveys",
         run: () => router.push(`/builder/${survey.id}`),
@@ -113,7 +113,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
                 }
               }
             }}
-            placeholder="Search surveys, pages, and actions…"
+            placeholder="Search surveys, pages, and actionsâ€¦"
             aria-label="Search surveys and pages"
             className="w-full bg-transparent text-[13.5px] text-ink outline-none placeholder:text-ink-faint"
           />
@@ -124,7 +124,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
           {flat.length === 0 && (
             <div className="flex flex-col items-center px-4 py-10 text-center">
               <Icon name="search" size={22} className="text-line-strong" />
-              <p className="mt-2 text-[13px] font-medium text-ink">No matches for “{query}”</p>
+              <p className="mt-2 text-[13px] font-medium text-ink">No matches for â€œ{query}â€</p>
               <p className="mt-1 text-xs text-ink-faint">Try a survey title, category, or page name.</p>
             </div>
           )}
@@ -173,12 +173,12 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
 
         <div className="flex items-center justify-between border-t border-line px-1 pt-3 text-[10px] text-ink-faint">
           <span className="flex items-center gap-1.5">
-            <Kbd className="h-4 min-w-4 px-1">↑</Kbd>
-            <Kbd className="h-4 min-w-4 px-1">↓</Kbd>
+            <Kbd className="h-4 min-w-4 px-1">â†‘</Kbd>
+            <Kbd className="h-4 min-w-4 px-1">â†“</Kbd>
             to navigate
           </span>
           <span className="flex items-center gap-1.5">
-            <Kbd className="h-4 px-1">↵</Kbd>
+            <Kbd className="h-4 px-1">â†µ</Kbd>
             to open
           </span>
         </div>

@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useState, type InputHTMLAttributes } from "react";
-import { Icon } from "@/components/atoms/icon";
-import { Input } from "@/components/atoms/input";
-import { cn } from "@/lib/utils";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input } from "@/app/_components/atoms/input";
+import { cn } from "@/app/_lib/utils";
 
 interface PasswordInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type"> {
   invalid?: boolean;

@@ -1,6 +1,6 @@
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { SectionLabel } from "@/components/atoms/misc";
+﻿import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { SectionLabel } from "@/app/_components/atoms/misc";
 import { DemoButton } from "./demo-button";
 
 const plans = [
@@ -55,7 +55,7 @@ export function Pricing() {
     <section id="pricing" className="border-t border-line/70 bg-cream/35">
       <div className="mx-auto w-full max-w-[1180px] px-5 py-18 sm:px-8 sm:py-24">
         <div className="mx-auto max-w-[640px] text-center">
-          <SectionLabel>05 — Pricing</SectionLabel>
+          <SectionLabel>05 â€” Pricing</SectionLabel>
           <h2 className="mt-3 text-balance font-display text-[clamp(2rem,4.2vw,3.15rem)] leading-[1.04] tracking-[-0.035em]">
             Simple pricing, no surprises.
           </h2>
@@ -157,7 +157,7 @@ export function Pricing() {
 
         <p className="mt-6 flex items-center justify-center gap-1.5 text-center text-[10.5px] text-ink-faint">
           <Icon name="info" size={12} />
-          Preview pricing only — this demo does not connect to billing or collect payment.
+          Preview pricing only â€” this demo does not connect to billing or collect payment.
         </p>
       </div>
     </section>
@@ -168,7 +168,7 @@ const questions = [
   {
     question: "Do I need an account to try SurveyLand?",
     answer:
-      "Not at all. The demo tour signs you into a local workspace instantly. Signing in and registering are also self-contained demo flows — no email is sent and no account is created on a server.",
+      "Not at all. The demo tour signs you into a local workspace instantly. Signing in and registering are also self-contained demo flows â€” no email is sent and no account is created on a server.",
   },
   {
     question: "Where is my survey data stored?",
@@ -193,7 +193,7 @@ const questions = [
   {
     question: "Is this connected to a real backend?",
     answer:
-      "No — and the interface says so in the places that matter. SurveyLand is a polished front-end demonstration. Workflows are real and persistent in your browser, but there is no billing, email delivery, or remote API.",
+      "No â€” and the interface says so in the places that matter. SurveyLand is a polished front-end demonstration. Workflows are real and persistent in your browser, but there is no billing, email delivery, or remote API.",
   },
 ];
 
@@ -202,7 +202,7 @@ export function Faq() {
     <section id="faq" className="border-t border-line/70">
       <div className="mx-auto grid w-full max-w-[1180px] gap-10 px-5 py-18 sm:px-8 sm:py-24 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
         <div>
-          <SectionLabel>06 — Good to know</SectionLabel>
+          <SectionLabel>06 â€” Good to know</SectionLabel>
           <h2 className="mt-3 text-balance font-display text-[clamp(2rem,4.2vw,3rem)] leading-[1.04] tracking-[-0.035em]">
             Questions, answered.
           </h2>

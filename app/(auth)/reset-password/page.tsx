@@ -1,13 +1,13 @@
-"use client";
+﻿"use client";
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { AuthHeading } from "@/components/molecules/auth-heading";
-import { FormField, PasswordHint } from "@/components/molecules/form-field";
-import { PasswordInput } from "@/components/molecules/password-input";
-import { passwordLabel, passwordScore } from "@/lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { AuthHeading } from "@/app/_components/molecules/auth-heading";
+import { FormField, PasswordHint } from "@/app/_components/molecules/form-field";
+import { PasswordInput } from "@/app/_components/molecules/password-input";
+import { passwordLabel, passwordScore } from "@/app/_lib/utils";
 
 export default function ResetPasswordPage() {
   const [values, setValues] = useState({ password: "", confirm: "" });
@@ -44,7 +44,7 @@ export default function ResetPasswordPage() {
         </h1>
         <p className="mx-auto mt-3 max-w-[330px] text-[13px] leading-relaxed text-ink-soft">
           In a live product you would now be signed in with the new password. Here, any password
-          already works — so you can head straight back.
+          already works â€” so you can head straight back.
         </p>
         <div className="mt-6 space-y-2">
           <Button href="/login" size="lg" fullWidth iconRight={<Icon name="arrowRight" size={15} />}>
@@ -55,7 +55,7 @@ export default function ResetPasswordPage() {
           </Button>
         </div>
         <p className="mt-5 text-[10px] text-ink-faint">
-          Demo preview — no password was stored or changed.
+          Demo preview â€” no password was stored or changed.
         </p>
       </div>
     );

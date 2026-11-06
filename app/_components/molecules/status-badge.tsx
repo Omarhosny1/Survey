@@ -1,5 +1,5 @@
-import { Badge } from "@/components/atoms/badge";
-import type { SurveyStatus } from "@/lib/types";
+﻿import { Badge } from "@/app/_components/atoms/badge";
+import type { SurveyStatus } from "@/app/_lib/types";
 
 const statusConfig = {
   draft: { label: "Draft", tone: "neutral" as const, dot: true },

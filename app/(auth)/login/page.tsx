@@ -1,18 +1,18 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Input } from "@/components/atoms/input";
-import { Spinner } from "@/components/atoms/spinner";
-import { AuthHeading } from "@/components/molecules/auth-heading";
-import { FormField } from "@/components/molecules/form-field";
-import { PasswordInput } from "@/components/molecules/password-input";
-import { useToast } from "@/components/molecules/toast";
-import { demoProfile, sessionActions, useSession } from "@/lib/session";
-import { isEmail } from "@/lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input } from "@/app/_components/atoms/input";
+import { Spinner } from "@/app/_components/atoms/spinner";
+import { AuthHeading } from "@/app/_components/molecules/auth-heading";
+import { FormField } from "@/app/_components/molecules/form-field";
+import { PasswordInput } from "@/app/_components/molecules/password-input";
+import { useToast } from "@/app/_components/molecules/toast";
+import { demoProfile, sessionActions, useSession } from "@/app/_lib/session";
+import { isEmail } from "@/app/_lib/utils";
 
 interface LoginErrors {
   email?: string;
@@ -91,7 +91,7 @@ export default function LoginPage() {
       <AuthHeading
         eyebrow="Welcome back"
         title="Good to see you again."
-        description="Sign in to pick up where you left off — or step into the demo workspace first."
+        description="Sign in to pick up where you left off â€” or step into the demo workspace first."
       />
 
       <div className="rounded-xl border border-forest/15 bg-forest-soft/45 p-4">

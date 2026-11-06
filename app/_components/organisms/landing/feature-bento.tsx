@@ -1,8 +1,8 @@
-import type { ReactNode } from "react";
-import { Icon } from "@/components/atoms/icon";
-import { SectionLabel } from "@/components/atoms/misc";
-import { BarList } from "@/components/molecules/charts";
-import { Avatar } from "@/components/atoms/avatar";
+﻿import type { ReactNode } from "react";
+import { Icon } from "@/app/_components/atoms/icon";
+import { SectionLabel } from "@/app/_components/atoms/misc";
+import { BarList } from "@/app/_components/molecules/charts";
+import { Avatar } from "@/app/_components/atoms/avatar";
 
 function FeatureCard({
   icon,
@@ -203,13 +203,13 @@ function ResponsesVisual() {
       {[
         {
           name: "Maya Chen",
-          meta: "Mobile · 100% · 3m 42s",
+          meta: "Mobile Â· 100% Â· 3m 42s",
           text: "The new flow felt much clearer. I found the pricing page without hunting for it.",
           time: "2m",
         },
         {
           name: "Leo Fischer",
-          meta: "Desktop · 92% · 5m 08s",
+          meta: "Desktop Â· 92% Â· 5m 08s",
           text: "Loved the quick start. I would have liked a short example before the first question.",
           time: "18m",
         },
@@ -238,7 +238,7 @@ function AnalyticsVisual() {
           <div>
             <p className="text-[10px] font-medium text-ink">What mattered most?</p>
             <p className="font-mono text-[7px] uppercase tracking-[0.1em] text-ink-faint">
-              Question 2 · 1,196 responses
+              Question 2 Â· 1,196 responses
             </p>
           </div>
           <span className="flex items-center gap-1 rounded-full bg-success-soft px-2 py-0.5 font-mono text-[7px] text-success">
@@ -289,7 +289,7 @@ export function FeatureBento() {
     <section id="product" className="border-t border-line/70">
       <div className="mx-auto w-full max-w-[1180px] px-5 py-18 sm:px-8 sm:py-24">
         <div className="max-w-[720px]">
-          <SectionLabel>01 — The workspace</SectionLabel>
+          <SectionLabel>01 â€” The workspace</SectionLabel>
           <h2 className="mt-3 text-balance font-display text-[clamp(2rem,4.2vw,3.15rem)] leading-[1.04] tracking-[-0.035em]">
             Everything between the question <span className="text-forest">and the decision.</span>
           </h2>
@@ -324,7 +324,7 @@ export function FeatureBento() {
             icon="message"
             eyebrow="Responses"
             title="Answers with context."
-            copy="See who replied, how they moved through the survey, and what they said — without losing the thread."
+            copy="See who replied, how they moved through the survey, and what they said â€” without losing the thread."
             className="md:col-span-2"
           >
             <ResponsesVisual />
@@ -334,7 +334,7 @@ export function FeatureBento() {
             icon="chartLine"
             eyebrow="Analytics"
             title="Insight you can read in one sitting."
-            copy="Clear summaries, honest percentages, and the themes worth acting on — no dashboard archaeology required."
+            copy="Clear summaries, honest percentages, and the themes worth acting on â€” no dashboard archaeology required."
             className="md:col-span-4"
           >
             <AnalyticsVisual />

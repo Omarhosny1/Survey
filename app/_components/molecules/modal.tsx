@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useId, useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
+import { cn } from "@/app/_lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
 
 type ModalSize = "sm" | "md" | "lg" | "xl";
 

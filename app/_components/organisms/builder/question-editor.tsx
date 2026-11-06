@@ -1,13 +1,13 @@
-"use client";
+﻿"use client";
 
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Input } from "@/components/atoms/input";
-import { Switch } from "@/components/atoms/misc";
-import { DropdownMenu } from "@/components/molecules/dropdown";
-import { Segmented } from "@/components/molecules/segmented";
-import type { Question, QuestionType } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input } from "@/app/_components/atoms/input";
+import { Switch } from "@/app/_components/atoms/misc";
+import { DropdownMenu } from "@/app/_components/molecules/dropdown";
+import { Segmented } from "@/app/_components/molecules/segmented";
+import type { Question, QuestionType } from "@/app/_lib/types";
+import { cn } from "@/app/_lib/utils";
 
 export function questionIssue(question: Question): string | null {
   if (!question.title.trim()) return "Add a question title before publishing.";

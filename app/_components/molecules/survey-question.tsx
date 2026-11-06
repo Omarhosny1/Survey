@@ -1,7 +1,7 @@
-"use client";
+﻿"use client";
 
-import type { AnswerValue, Question } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import type { AnswerValue, Question } from "@/app/_lib/types";
+import { cn } from "@/app/_lib/utils";
 
 interface SurveyQuestionFieldProps {
   question: Question;
@@ -117,14 +117,14 @@ export function SurveyQuestionField({
           <textarea
             value={selected}
             onChange={(event) => onChange?.(event.target.value)}
-            placeholder="Type your answer here…"
+            placeholder="Type your answer hereâ€¦"
             rows={4}
             aria-label={question.title || "Your answer"}
             className="w-full resize-none rounded-lg border border-line bg-surface px-3.5 py-3 text-[13px] leading-relaxed text-ink placeholder:text-ink-faint/80 transition-[border-color,box-shadow] duration-150 focus:outline-none focus:ring-4 focus:ring-forest/10"
             style={{ borderColor: selected ? `${accent}66` : undefined }}
           />
           <p className="mt-1.5 text-[10px] text-ink-faint">
-            Long answer · respondents can write as much as they need.
+            Long answer Â· respondents can write as much as they need.
           </p>
         </div>
       )}

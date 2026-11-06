@@ -1,17 +1,17 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Input, Select } from "@/components/atoms/input";
-import { EmptyState } from "@/components/molecules/empty-state";
-import { PageHeader } from "@/components/molecules/section-heading";
-import { Segmented } from "@/components/molecules/segmented";
-import { SurveyGrid, SurveyList } from "@/components/organisms/survey-card";
-import { responseCount, statusCounts } from "@/lib/analytics";
-import { useSurveyStore } from "@/lib/store";
-import type { SurveyStatus } from "@/lib/types";
-import { cn, formatNumber } from "@/lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input, Select } from "@/app/_components/atoms/input";
+import { EmptyState } from "@/app/_components/molecules/empty-state";
+import { PageHeader } from "@/app/_components/molecules/section-heading";
+import { Segmented } from "@/app/_components/molecules/segmented";
+import { SurveyGrid, SurveyList } from "@/app/_components/organisms/survey-card";
+import { responseCount, statusCounts } from "@/app/_lib/analytics";
+import { useSurveyStore } from "@/app/_lib/store";
+import type { SurveyStatus } from "@/app/_lib/types";
+import { cn, formatNumber } from "@/app/_lib/utils";
 
 type StatusFilter = "all" | SurveyStatus;
 type SortKey = "updated" | "responses" | "title";
@@ -74,7 +74,7 @@ export default function SurveysPage() {
               <Input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search surveys…"
+                placeholder="Search surveysâ€¦"
                 aria-label="Search surveys"
                 className="pr-9"
                 prefix={<Icon name="search" size={14} />}
@@ -116,7 +116,7 @@ export default function SurveysPage() {
             >
               <option value="updated">Recently updated</option>
               <option value="responses">Most responses</option>
-              <option value="title">Title A–Z</option>
+              <option value="title">Title Aâ€“Z</option>
             </Select>
 
             <div className="flex items-center gap-0.5 rounded-md border border-line bg-canvas/70 p-0.5">
@@ -154,13 +154,13 @@ export default function SurveysPage() {
           {status !== "all" && (
             <>
               {" "}
-              · <span className="capitalize">{status}</span>
+              Â· <span className="capitalize">{status}</span>
             </>
           )}
           {query.trim() && (
             <>
               {" "}
-              matching <span className="font-medium text-ink-soft">“{query.trim()}”</span>
+              matching <span className="font-medium text-ink-soft">â€œ{query.trim()}â€</span>
             </>
           )}
         </p>
@@ -210,7 +210,7 @@ export default function SurveysPage() {
         </p>
         <p className="flex items-center gap-1.5 font-mono text-[8.5px] uppercase tracking-[0.08em] text-ink-faint">
           <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-          {counts.published} live · {counts.draft} drafts · {counts.closed} closed
+          {counts.published} live Â· {counts.draft} drafts Â· {counts.closed} closed
         </p>
       </div>
     </div>

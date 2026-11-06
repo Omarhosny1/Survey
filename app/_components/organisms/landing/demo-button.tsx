@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/navigation";
-import { Button, type ButtonProps } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { sessionActions, useSession } from "@/lib/session";
+import { Button, type ButtonProps } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { sessionActions, useSession } from "@/app/_lib/session";
 
 interface DemoButtonProps {
   label?: string;

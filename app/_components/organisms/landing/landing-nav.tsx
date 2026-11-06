@@ -1,12 +1,12 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
-import { Logo } from "@/components/atoms/logo";
-import { Icon } from "@/components/atoms/icon";
-import { Button } from "@/components/atoms/button";
-import { useSession } from "@/lib/session";
-import { cn } from "@/lib/utils";
+import { Logo } from "@/app/_components/atoms/logo";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Button } from "@/app/_components/atoms/button";
+import { useSession } from "@/app/_lib/session";
+import { cn } from "@/app/_lib/utils";
 
 const links = [
   { label: "Product", href: "#product" },

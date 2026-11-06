@@ -1,5 +1,5 @@
-import { Suspense } from "react";
-import { ResponsesView } from "@/components/organisms/responses-view";
+﻿import { Suspense } from "react";
+import { ResponsesView } from "@/app/_components/organisms/responses-view";
 
 function ResponsesFallback() {
   return (

@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/navigation";
-import { DropdownMenu } from "@/components/molecules/dropdown";
-import { Icon, type IconName } from "@/components/atoms/icon";
-import { SectionLabel } from "@/components/atoms/misc";
-import { useSurveyStore } from "@/lib/store";
-import type { ActivityType } from "@/lib/types";
+import { DropdownMenu } from "@/app/_components/molecules/dropdown";
+import { Icon, type IconName } from "@/app/_components/atoms/icon";
+import { SectionLabel } from "@/app/_components/atoms/misc";
+import { useSurveyStore } from "@/app/_lib/store";
+import type { ActivityType } from "@/app/_lib/types";
 
 const activityIcons: Record<ActivityType, IconName> = {
   published: "globe",
@@ -35,7 +35,7 @@ export function NotificationsMenu() {
       }
       items={[
         ...recent.map((item) => ({
-          label: `${item.surveyTitle} — ${item.message}`,
+          label: `${item.surveyTitle} â€” ${item.message}`,
           icon: activityIcons[item.type],
           onSelect: () => {
             if (item.type === "response") router.push("/dashboard/responses");

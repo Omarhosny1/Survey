@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
+﻿import type { ReactNode } from "react";
 import Link from "next/link";
-import { Avatar } from "@/components/atoms/avatar";
-import { Icon } from "@/components/atoms/icon";
-import { Logo } from "@/components/atoms/logo";
-import { Sparkline } from "@/components/molecules/charts";
+import { Avatar } from "@/app/_components/atoms/avatar";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Logo } from "@/app/_components/atoms/logo";
+import { Sparkline } from "@/app/_components/molecules/charts";
 
 export function AuthLayout({ children }: { children: ReactNode }) {
   return (
@@ -31,10 +31,10 @@ export function AuthLayout({ children }: { children: ReactNode }) {
         </main>
 
         <footer className="flex items-center justify-between gap-4 border-t border-line/70 pt-4 text-[10px] text-ink-faint">
-          <span>© 2026 SurveyLand</span>
+          <span>Â© 2026 SurveyLand</span>
           <span className="flex items-center gap-1.5">
             <Icon name="shield" size={11} />
-            Demo build · data stays local
+            Demo build Â· data stays local
           </span>
         </footer>
       </div>
@@ -73,7 +73,7 @@ export function AuthLayout({ children }: { children: ReactNode }) {
               The questions you ask shape the answers you get.
             </p>
             <p className="mt-4 max-w-[360px] text-[13px] leading-relaxed text-cream/55">
-              SurveyLand gives every question a little more care — so the answers are worth
+              SurveyLand gives every question a little more care â€” so the answers are worth
               acting on.
             </p>
 
@@ -121,7 +121,7 @@ export function AuthLayout({ children }: { children: ReactNode }) {
                 />
               </div>
               <p className="mt-2 text-[8.5px] text-cream/40">
-                12 new responses today · every one read by a person
+                12 new responses today Â· every one read by a person
               </p>
             </div>
           </div>

@@ -1,24 +1,24 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Input } from "@/components/atoms/input";
-import { Logo } from "@/components/atoms/logo";
-import { Spinner } from "@/components/atoms/spinner";
-import { DropdownMenu, type DropdownItem } from "@/components/molecules/dropdown";
-import { ConfirmDialog, Modal } from "@/components/molecules/modal";
-import { StatusBadge } from "@/components/molecules/status-badge";
-import { Tabs } from "@/components/molecules/tabs";
-import { useToast } from "@/components/molecules/toast";
-import { useSession } from "@/lib/session";
-import { responseCount } from "@/lib/analytics";
-import { surveyActions, uniqueSlug, useSurveyStore } from "@/lib/store";
-import { blankQuestion, newSurvey } from "@/lib/survey-factory";
-import type { Question, QuestionType, Survey, SurveyTheme } from "@/lib/types";
-import { cn, copyToClipboard, formatNumber, uid } from "@/lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input } from "@/app/_components/atoms/input";
+import { Logo } from "@/app/_components/atoms/logo";
+import { Spinner } from "@/app/_components/atoms/spinner";
+import { DropdownMenu, type DropdownItem } from "@/app/_components/molecules/dropdown";
+import { ConfirmDialog, Modal } from "@/app/_components/molecules/modal";
+import { StatusBadge } from "@/app/_components/molecules/status-badge";
+import { Tabs } from "@/app/_components/molecules/tabs";
+import { useToast } from "@/app/_components/molecules/toast";
+import { useSession } from "@/app/_lib/session";
+import { responseCount } from "@/app/_lib/analytics";
+import { surveyActions, uniqueSlug, useSurveyStore } from "@/app/_lib/store";
+import { blankQuestion, newSurvey } from "@/app/_lib/survey-factory";
+import type { Question, QuestionType, Survey, SurveyTheme } from "@/app/_lib/types";
+import { cn, copyToClipboard, formatNumber, uid } from "@/app/_lib/utils";
 import { QuestionEditor, questionIssue } from "./question-editor";
 import { QuestionList } from "./question-list";
 import { SurveyPreview, SurveySettings } from "./builder-panels";
@@ -380,7 +380,7 @@ function BuilderEditor({
       toast.error("Could not duplicate this survey");
       return;
     }
-    toast.success("Survey duplicated", `“${copy.title}” is ready to edit.`);
+    toast.success("Survey duplicated", `â€œ${copy.title}â€ is ready to edit.`);
     router.push(`/builder/${copy.id}`);
   };
 
@@ -754,7 +754,7 @@ function BuilderEditor({
         onClose={() => setDeleteOpen(false)}
         onConfirm={confirmDelete}
         title="Delete this survey?"
-        description={`“${survey.title || "Untitled survey"}” and its ${formatNumber(
+        description={`â€œ${survey.title || "Untitled survey"}â€ and its ${formatNumber(
           responseCount(store, survey.id),
         )} responses will be permanently removed from this demo. This cannot be undone.`}
         confirmLabel="Delete survey"

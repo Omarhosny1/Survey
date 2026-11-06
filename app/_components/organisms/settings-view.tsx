@@ -1,26 +1,26 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState, type ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Avatar } from "@/components/atoms/avatar";
-import { Button } from "@/components/atoms/button";
-import { Icon, type IconName } from "@/components/atoms/icon";
-import { Input, Select } from "@/components/atoms/input";
-import { SectionLabel, Switch } from "@/components/atoms/misc";
-import { FormField } from "@/components/molecules/form-field";
-import { ConfirmDialog } from "@/components/molecules/modal";
-import { PageHeader } from "@/components/molecules/section-heading";
-import { useToast } from "@/components/molecules/toast";
-import { useSession, sessionActions } from "@/lib/session";
-import { surveyActions, useSurveyStore } from "@/lib/store";
-import type { Profile, ProfilePreferences } from "@/lib/types";
+import { Avatar } from "@/app/_components/atoms/avatar";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon, type IconName } from "@/app/_components/atoms/icon";
+import { Input, Select } from "@/app/_components/atoms/input";
+import { SectionLabel, Switch } from "@/app/_components/atoms/misc";
+import { FormField } from "@/app/_components/molecules/form-field";
+import { ConfirmDialog } from "@/app/_components/molecules/modal";
+import { PageHeader } from "@/app/_components/molecules/section-heading";
+import { useToast } from "@/app/_components/molecules/toast";
+import { useSession, sessionActions } from "@/app/_lib/session";
+import { surveyActions, useSurveyStore } from "@/app/_lib/store";
+import type { Profile, ProfilePreferences } from "@/app/_lib/types";
 import {
   cn,
   downloadJson,
   formatNumber,
   isEmail,
   initials,
-} from "@/lib/utils";
+} from "@/app/_lib/utils";
 
 type SettingsTab = "profile" | "notifications" | "appearance" | "data";
 
@@ -152,7 +152,7 @@ function SettingsContent({ profile }: { profile: Profile }) {
     event.target.value = "";
     if (!file) return;
     if (!file.type.startsWith("image/")) {
-      toast.error("That file isn’t an image", "Choose a PNG, JPG, or WebP file.");
+      toast.error("That file isnâ€™t an image", "Choose a PNG, JPG, or WebP file.");
       return;
     }
     if (file.size > 2 * 1024 * 1024) {
@@ -573,7 +573,7 @@ function SettingsContent({ profile }: { profile: Profile }) {
                     <p className="truncate text-[13px] font-medium text-ink">{profile.name}</p>
                     <p className="truncate text-[10.5px] text-ink-faint">
                       {profile.role || "Team member"}
-                      {profile.company ? ` · ${profile.company}` : ""}
+                      {profile.company ? ` Â· ${profile.company}` : ""}
                     </p>
                   </div>
                 </div>

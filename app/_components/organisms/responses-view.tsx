@@ -1,25 +1,25 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Avatar } from "@/components/atoms/avatar";
-import { Badge } from "@/components/atoms/badge";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Input, Select } from "@/components/atoms/input";
-import { SectionLabel } from "@/components/atoms/misc";
-import { Progress } from "@/components/atoms/progress";
-import { EmptyState } from "@/components/molecules/empty-state";
-import { Modal } from "@/components/molecules/modal";
-import { PageHeader } from "@/components/molecules/section-heading";
-import { useToast } from "@/components/molecules/toast";
+import { Avatar } from "@/app/_components/atoms/avatar";
+import { Badge } from "@/app/_components/atoms/badge";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input, Select } from "@/app/_components/atoms/input";
+import { SectionLabel } from "@/app/_components/atoms/misc";
+import { Progress } from "@/app/_components/atoms/progress";
+import { EmptyState } from "@/app/_components/molecules/empty-state";
+import { Modal } from "@/app/_components/molecules/modal";
+import { PageHeader } from "@/app/_components/molecules/section-heading";
+import { useToast } from "@/app/_components/molecules/toast";
 import {
   averageDuration,
   completionRate,
   formatAnswerPreview,
   responseCount,
-} from "@/lib/analytics";
-import { useSurveyStore } from "@/lib/store";
+} from "@/app/_lib/analytics";
+import { useSurveyStore } from "@/app/_lib/store";
 import {
   cn,
   downloadCsv,
@@ -28,7 +28,7 @@ import {
   formatDuration,
   formatNumber,
   formatRelative,
-} from "@/lib/utils";
+} from "@/app/_lib/utils";
 
 type SortKey = "newest" | "oldest" | "longest";
 const PAGE_SIZE = 12;
@@ -157,7 +157,7 @@ export function ResponsesView({ initialSurveyId }: { initialSurveyId?: string })
           ),
         ]),
       ]);
-      toast.success("CSV exported", `${formatNumber(filtered.length)} responses from “${activeSurvey.title}”.`);
+      toast.success("CSV exported", `${formatNumber(filtered.length)} responses from â€œ${activeSurvey.title}â€.`);
       return;
     }
 
@@ -255,7 +255,7 @@ export function ResponsesView({ initialSurveyId }: { initialSurveyId?: string })
                 setQuery(event.target.value);
                 setPage(1);
               }}
-              placeholder="Search names, emails, or answers…"
+              placeholder="Search names, emails, or answersâ€¦"
               aria-label="Search responses"
               className="pr-9"
               prefix={<Icon name="search" size={14} />}
@@ -322,7 +322,7 @@ export function ResponsesView({ initialSurveyId }: { initialSurveyId?: string })
             <>
               Showing{" "}
               <span className="font-medium text-ink-soft">
-                {formatNumber(start + 1)}–{formatNumber(Math.min(start + PAGE_SIZE, filtered.length))}
+                {formatNumber(start + 1)}â€“{formatNumber(Math.min(start + PAGE_SIZE, filtered.length))}
               </span>{" "}
               of {formatNumber(filtered.length)}
               {hasFilters ? " filtered responses" : " responses"}
@@ -494,7 +494,7 @@ export function ResponsesView({ initialSurveyId }: { initialSurveyId?: string })
         title={selected?.name ?? "Response"}
         description={
           selected
-            ? `${selectedSurvey?.title ?? "Deleted survey"} · ${formatDateTime(selected.submittedAt)}`
+            ? `${selectedSurvey?.title ?? "Deleted survey"} Â· ${formatDateTime(selected.submittedAt)}`
             : undefined
         }
         size="lg"
@@ -565,7 +565,7 @@ export function ResponsesView({ initialSurveyId }: { initialSurveyId?: string })
                 return (
                   <div key={question.id}>
                     <p className="font-mono text-[8.5px] uppercase tracking-[0.1em] text-ink-faint">
-                      Question {index + 1} ·{" "}
+                      Question {index + 1} Â·{" "}
                       {question.type === "multiple_choice" ? "Multiple choice" : "Long answer"}
                     </p>
                     <p className="mt-1 text-[12.5px] font-medium leading-relaxed text-ink">

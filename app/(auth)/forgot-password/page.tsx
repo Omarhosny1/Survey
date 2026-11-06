@@ -1,13 +1,13 @@
-"use client";
+﻿"use client";
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Input } from "@/components/atoms/input";
-import { AuthHeading } from "@/components/molecules/auth-heading";
-import { FormField } from "@/components/molecules/form-field";
-import { isEmail } from "@/lib/utils";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Input } from "@/app/_components/atoms/input";
+import { AuthHeading } from "@/app/_components/molecules/auth-heading";
+import { FormField } from "@/app/_components/molecules/form-field";
+import { isEmail } from "@/app/_lib/utils";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -110,7 +110,7 @@ export default function ForgotPasswordPage() {
 
       <p className="mt-6 flex items-start gap-2 border-t border-line/70 pt-4 text-[10px] leading-relaxed text-ink-faint">
         <Icon name="info" size={12} className="mt-0.5 shrink-0" />
-        Demo only — no email is sent. You can continue to the reset form to preview the flow.
+        Demo only â€” no email is sent. You can continue to the reset form to preview the flow.
       </p>
     </div>
   );

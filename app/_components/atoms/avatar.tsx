@@ -1,4 +1,4 @@
-import { cn, initials } from "@/lib/utils";
+﻿import { cn, initials } from "@/app/_lib/utils";
 
 const palettes = [
   { bg: "#E2EDE7", fg: "#0D5947" },

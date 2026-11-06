@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { Button } from "@/components/atoms/button";
-import { Icon } from "@/components/atoms/icon";
-import { Logo } from "@/components/atoms/logo";
+﻿import Link from "next/link";
+import { Button } from "@/app/_components/atoms/button";
+import { Icon } from "@/app/_components/atoms/icon";
+import { Logo } from "@/app/_components/atoms/logo";
 import { DemoButton } from "./demo-button";
 
 const footerColumns = [
@@ -79,7 +79,7 @@ export function FinalCta() {
             />
           </div>
           <p className="mt-4 text-[10px] text-cream/40">
-            Free to explore · no credit card · data stays in your browser
+            Free to explore Â· no credit card Â· data stays in your browser
           </p>
         </div>
       </div>
@@ -97,13 +97,13 @@ export function LandingFooter() {
               <Logo size={30} />
             </Link>
             <p className="mt-3 text-[12px] leading-relaxed text-ink-soft">
-              A considered survey platform for teams who want to ask better questions — and
+              A considered survey platform for teams who want to ask better questions â€” and
               actually understand the answers.
             </p>
             <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-line bg-cream/70 px-2.5 py-1">
               <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               <span className="font-mono text-[8.5px] uppercase tracking-[0.1em] text-ink-faint">
-                Demo build · local data
+                Demo build Â· local data
               </span>
             </div>
           </div>
@@ -131,7 +131,7 @@ export function LandingFooter() {
 
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-line pt-5 sm:flex-row sm:items-center">
           <p className="text-[10.5px] text-ink-faint">
-            © 2026 SurveyLand. A front-end demonstration — no payments, emails, or remote data.
+            Â© 2026 SurveyLand. A front-end demonstration â€” no payments, emails, or remote data.
           </p>
           <div className="flex items-center gap-4">
             <span className="font-display text-[12px] italic text-ink-faint">

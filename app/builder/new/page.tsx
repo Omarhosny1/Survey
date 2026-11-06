@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { BuilderWorkspace } from "@/components/organisms/builder/builder-workspace";
+﻿import type { Metadata } from "next";
+import { BuilderWorkspace } from "@/app/_components/organisms/builder/builder-workspace";
 
 export const metadata: Metadata = {
   title: "New survey",
