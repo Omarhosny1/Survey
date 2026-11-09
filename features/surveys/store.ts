@@ -26,22 +26,23 @@ function requireClient() {
 }
 
 async function refreshWorkspace(): Promise<void> {
-  await getQueryClient().invalidateQueries({ queryKey: surveyKeys.workspace() });
+  await getQueryClient().invalidateQueries({ queryKey: surveyKeys.workspaces() });
 }
 
 export function useSurveyStore(): SurveyStoreState {
   const client = getSupabaseBrowserClient();
   const { profile, hydrated } = useSession();
+  const userId = profile?.id ?? null;
   const query = useQuery({
-    queryKey: surveyKeys.workspace(),
+    queryKey: surveyKeys.workspace(userId ?? "anonymous"),
     queryFn: () => fetchWorkspace(requireClient()),
-     enabled: Boolean(client) && hydrated && Boolean(profile),
+    enabled: Boolean(client) && hydrated && Boolean(userId),
     staleTime: 10_000,
   });
 
   useEffect(() => {
-    if (query.data) latestSurveys = query.data.surveys;
-  }, [query.data]);
+    latestSurveys = userId && query.data ? query.data.surveys : [];
+  }, [query.data, userId]);
 
   const fallback = useMemo<SurveyStoreState>(
     () => ({
@@ -126,9 +127,9 @@ export function findSurvey(id: string): Survey | undefined {
   return latestSurveys.find((survey) => survey.id === id);
 }
 
-export function storeSnapshot(): SurveyStoreState {
+export function storeSnapshot(userId: string): SurveyStoreState {
   return (
-    getQueryClient().getQueryData<SurveyStoreState>(surveyKeys.workspace()) ?? {
+    getQueryClient().getQueryData<SurveyStoreState>(surveyKeys.workspace(userId)) ?? {
       surveys: [],
       responses: [],
       activity: [],

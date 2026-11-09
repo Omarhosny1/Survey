@@ -50,28 +50,54 @@ async function requireUserId(client: Client): Promise<string> {
 }
 
 export async function fetchWorkspace(client: Client): Promise<SurveyStoreState> {
-  const [surveysResult, responsesResult, answersResult, activityResult] = await Promise.all([
-    client
-      .from("surveys")
-      .select(surveySelect)
-      .order("updated_at", { ascending: false }),
-    client.from("responses").select("*").order("submitted_at", { ascending: false }),
-    client.from("response_answers").select("*"),
-    client
-      .from("activity_events")
+  const ownerId = await requireUserId(client);
+
+  const { data: surveyRows, error: surveysError } = await client
+    .from("surveys")
+    .select(surveySelect)
+    .eq("owner_id", ownerId)
+    .order("updated_at", { ascending: false });
+
+  if (surveysError) throw surveysError;
+
+  const rows = (surveyRows ?? []) as unknown as SurveyRowWithQuestions[];
+  const surveyIds = rows.map((row) => row.id);
+
+  let responseRows: ResponseRow[] = [];
+  let answerRows: ResponseAnswerRow[] = [];
+
+  if (surveyIds.length > 0) {
+    const { data: responses, error: responsesError } = await client
+      .from("responses")
       .select("*")
-      .order("created_at", { ascending: false })
-      .limit(30),
-  ]);
+      .in("survey_id", surveyIds)
+      .order("submitted_at", { ascending: false });
 
-  if (surveysResult.error) throw surveysResult.error;
-  if (responsesResult.error) throw responsesResult.error;
-  if (answersResult.error) throw answersResult.error;
-  if (activityResult.error) throw activityResult.error;
+    if (responsesError) throw responsesError;
+    responseRows = (responses ?? []) as ResponseRow[];
 
-  const surveys = ((surveysResult.data ?? []) as unknown as SurveyRowWithQuestions[]).map(
-    toSurvey,
-  );
+    const responseIds = responseRows.map((row) => row.id);
+    if (responseIds.length > 0) {
+      const { data: answers, error: answersError } = await client
+        .from("response_answers")
+        .select("*")
+        .in("response_id", responseIds);
+
+      if (answersError) throw answersError;
+      answerRows = (answers ?? []) as ResponseAnswerRow[];
+    }
+  }
+
+  const { data: activityRows, error: activityError } = await client
+    .from("activity_events")
+    .select("*")
+    .eq("owner_id", ownerId)
+    .order("created_at", { ascending: false })
+    .limit(30);
+
+  if (activityError) throw activityError;
+
+  const surveys = rows.map(toSurvey);
 
   const optionLabels = new Map<string, string>();
   for (const survey of surveys) {
@@ -83,7 +109,7 @@ export async function fetchWorkspace(client: Client): Promise<SurveyStoreState> 
   }
 
   const answersByResponse = new Map<string, Record<string, AnswerValue>>();
-  for (const answer of (answersResult.data ?? []) as ResponseAnswerRow[]) {
+  for (const answer of answerRows) {
     const answers = answersByResponse.get(answer.response_id) ?? {};
     const value = answer.option_id
       ? optionLabels.get(answer.option_id) ?? ""
@@ -99,11 +125,11 @@ export async function fetchWorkspace(client: Client): Promise<SurveyStoreState> 
     answersByResponse.set(answer.response_id, answers);
   }
 
-  const responses = ((responsesResult.data ?? []) as ResponseRow[]).map((row) =>
+  const responses = responseRows.map((row) =>
     mapResponse(row, answersByResponse.get(row.id) ?? {}),
   );
 
-  const activity = ((activityResult.data ?? []) as ActivityRow[]).map(mapActivity);
+  const activity = ((activityRows ?? []) as ActivityRow[]).map(mapActivity);
 
   return { surveys, responses, activity, hydrated: true };
 }
@@ -112,10 +138,12 @@ export async function fetchSurveyById(
   client: Client,
   id: string,
 ): Promise<Survey | null> {
+  const ownerId = await requireUserId(client);
   const { data, error } = await client
     .from("surveys")
     .select(surveySelect)
     .eq("id", id)
+    .eq("owner_id", ownerId)
     .maybeSingle();
 
   if (error) throw error;
@@ -180,6 +208,7 @@ export async function saveSurveyTree(client: Client, survey: Survey): Promise<Su
     .from("surveys")
     .select("id")
     .eq("id", survey.id)
+    .eq("owner_id", ownerId)
     .maybeSingle();
 
   const { error } = await client.rpc("save_survey_tree", {
@@ -228,6 +257,7 @@ export async function setSurveyStatus(
     .from("surveys")
     .update(patch)
     .eq("id", id)
+    .eq("owner_id", ownerId)
     .select("title, published_at")
     .single();
 
@@ -258,6 +288,7 @@ export async function reopenSurvey(client: Client, id: string): Promise<void> {
     .from("surveys")
     .update({ status: "published", closed_at: null })
     .eq("id", id)
+    .eq("owner_id", ownerId)
     .select("title")
     .single();
 
@@ -276,11 +307,21 @@ export async function reopenSurvey(client: Client, id: string): Promise<void> {
 }
 
 export async function deleteSurvey(client: Client, id: string): Promise<void> {
-  const { error } = await client.from("surveys").delete().eq("id", id);
+  const ownerId = await requireUserId(client);
+
+  const { error } = await client
+    .from("surveys")
+    .delete()
+    .eq("id", id)
+    .eq("owner_id", ownerId);
   if (error) throw error;
 
   try {
-    await client.from("activity_events").delete().eq("survey_id", id);
+    await client
+      .from("activity_events")
+      .delete()
+      .eq("survey_id", id)
+      .eq("owner_id", ownerId);
   } catch {
     // Activity is best-effort.
   }

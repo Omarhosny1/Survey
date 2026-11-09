@@ -17,9 +17,20 @@ function AppInner({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!client) return;
 
-    const { data } = client.auth.onAuthStateChange(() => {
+    const { data } = client.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT") {
+        queryClient.removeQueries({ queryKey: surveyKeys.all });
+        queryClient.setQueryData(authKeys.session(), null);
+        return;
+      }
+
+      // A new identity must never inherit the previous user's cached workspace.
+      if (event === "SIGNED_IN") {
+        queryClient.removeQueries({ queryKey: surveyKeys.all });
+      }
+
       void queryClient.invalidateQueries({ queryKey: authKeys.all });
-      void queryClient.invalidateQueries({ queryKey: surveyKeys.all });
+      void queryClient.invalidateQueries({ queryKey: surveyKeys.workspaces() });
     });
 
     return () => data.subscription.unsubscribe();

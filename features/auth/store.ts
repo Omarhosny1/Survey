@@ -33,7 +33,11 @@ function setSessionProfile(profile: Profile | null): void {
 }
 
 function invalidateWorkspace(): Promise<void> {
-  return getQueryClient().invalidateQueries({ queryKey: surveyKeys.workspace() });
+  return getQueryClient().invalidateQueries({ queryKey: surveyKeys.workspaces() });
+}
+
+function clearUserData(): void {
+  getQueryClient().removeQueries({ queryKey: surveyKeys.all });
 }
 
 export function useSession(): SessionState {
@@ -64,6 +68,7 @@ export const sessionActions = {
   async signIn(email: string, password: string): Promise<Profile> {
     const client = requireClient();
     const profile = await signIn(client, email, password);
+    clearUserData();
     setSessionProfile(profile);
     await invalidateWorkspace();
     return profile;
@@ -78,6 +83,7 @@ export const sessionActions = {
     const client = requireClient();
     const result = await signUp(client, input);
     if (result.profile) {
+      clearUserData();
       setSessionProfile(result.profile);
       await invalidateWorkspace();
     }
@@ -109,6 +115,7 @@ export const sessionActions = {
       }
     }
 
+    clearUserData();
     setSessionProfile(profile);
 
     const workspace = await fetchWorkspace(client);
@@ -123,8 +130,8 @@ export const sessionActions = {
   async signOut(): Promise<void> {
     const client = requireClient();
     await signOut(client);
+    clearUserData();
     setSessionProfile(null);
-    getQueryClient().removeQueries({ queryKey: surveyKeys.all });
   },
 
   async updateProfile(patch: Partial<Profile>): Promise<Profile> {

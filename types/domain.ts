@@ -79,6 +79,7 @@ export interface ProfilePreferences {
 }
 
 export interface Profile {
+  id: string;
   name: string;
   email: string;
   company: string;

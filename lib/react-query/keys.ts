@@ -6,7 +6,8 @@ export const authKeys = {
 
 export const surveyKeys = {
   all: ["surveys"] as const,
-  workspace: () => [...surveyKeys.all, "workspace"] as const,
+  workspaces: () => [...surveyKeys.all, "workspace"] as const,
+  workspace: (userId: string) => [...surveyKeys.workspaces(), userId] as const,
   lists: () => [...surveyKeys.all, "list"] as const,
   list: (filters?: Record<string, unknown>) =>
     [...surveyKeys.lists(), filters ?? {}] as const,

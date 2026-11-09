@@ -689,6 +689,7 @@ export const seedActivity: ActivityItem[] = [
 ];
 
 export const seedProfile: Profile = {
+  id: "demo-profile",
   name: "Amara Osei",
   email: "amara@northwind.studio",
   company: "Northwind Studio",

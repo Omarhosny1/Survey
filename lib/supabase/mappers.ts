@@ -54,6 +54,7 @@ function mapPreferences(value: unknown): ProfilePreferences {
 
 export function mapProfile(row: ProfileRow): Profile {
   return {
+    id: row.id,
     name: row.name,
     email: row.email,
     company: row.company ?? "",
