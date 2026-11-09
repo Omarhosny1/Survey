@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Fraunces, JetBrains_Mono } from "next/font/google";
-import { AppProviders } from "./providers";
-import "@/app/_styles/globals.css";
+import { AppProviders } from "@/providers/app-providers";
+import "@/styles/globals.css";
 
 const sans = DM_Sans({
   subsets: ["latin"],

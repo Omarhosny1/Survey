@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import { Logo } from "@/app/_components/atoms/logo";
-import { Spinner } from "@/app/_components/atoms/spinner";
-import { PublicSurvey } from "@/app/_components/organisms/public-survey";
+import { Logo } from "@/components/atoms/logo";
+import { Spinner } from "@/components/atoms/spinner";
+import { PublicSurvey } from "@/features/responses/components/public-survey";
 
 function SurveyFallback() {
   return (

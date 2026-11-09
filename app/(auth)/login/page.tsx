@@ -1,42 +1,34 @@
-﻿"use client";
+"use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Button } from "@/app/_components/atoms/button";
-import { Icon } from "@/app/_components/atoms/icon";
-import { Input } from "@/app/_components/atoms/input";
-import { Spinner } from "@/app/_components/atoms/spinner";
-import { AuthHeading } from "@/app/_components/molecules/auth-heading";
-import { FormField } from "@/app/_components/molecules/form-field";
-import { PasswordInput } from "@/app/_components/molecules/password-input";
-import { useToast } from "@/app/_components/molecules/toast";
-import { demoProfile, sessionActions, useSession } from "@/app/_lib/session";
-import { isEmail } from "@/app/_lib/utils";
-
-interface LoginErrors {
-  email?: string;
-  password?: string;
-}
-
-function profileForLogin(email: string) {
-  const base = demoProfile();
-  const local = email.split("@")[0] ?? "";
-  const name = local
-    .split(/[._-]+/)
-    .filter(Boolean)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-  return { ...base, email, name: name || base.name };
-}
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Button } from "@/components/atoms/button";
+import { Icon } from "@/components/atoms/icon";
+import { Input } from "@/components/atoms/input";
+import { Spinner } from "@/components/atoms/spinner";
+import { AuthHeading } from "@/components/molecules/auth-heading";
+import { FormField } from "@/components/molecules/form-field";
+import { PasswordInput } from "@/components/molecules/password-input";
+import { useToast } from "@/components/molecules/toast";
+import { loginSchema, type LoginValues } from "@/features/auth/schemas/auth.schema";
+import { sessionActions, useSession } from "@/features/auth/store";
 
 export default function LoginPage() {
   const { profile } = useSession();
   const router = useRouter();
   const toast = useToast();
-  const [values, setValues] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState<LoginErrors>({});
-  const [loading, setLoading] = useState(false);
+  const [demoLoading, setDemoLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: "", password: "" },
+  });
 
   useEffect(() => {
     if (profile) router.replace("/dashboard");
@@ -50,48 +42,43 @@ export default function LoginPage() {
     );
   }
 
-  const update = (field: keyof typeof values, value: string) => {
-    setValues((current) => ({ ...current, [field]: value }));
-    setErrors((current) => ({ ...current, [field]: undefined }));
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const nextErrors: LoginErrors = {};
-    if (!values.email.trim()) nextErrors.email = "Enter your email address.";
-    else if (!isEmail(values.email.trim())) nextErrors.email = "That email address doesn't look right.";
-    if (!values.password) nextErrors.password = "Enter your password.";
-    else if (values.password.length < 6)
-      nextErrors.password = "Passwords are at least 6 characters in this demo.";
-
-    if (Object.keys(nextErrors).length > 0) {
-      setErrors(nextErrors);
-      return;
+  const onSubmit = async (values: LoginValues) => {
+    try {
+      await sessionActions.signIn(values.email, values.password);
+      toast.success("Welcome back", "Your workspace is ready.");
+      router.push("/dashboard");
+    } catch (error) {
+      toast.error(
+        "Could not sign in",
+        error instanceof Error ? error.message : "Check your details and try again.",
+      );
     }
-
-    setLoading(true);
-    window.setTimeout(() => {
-      sessionActions.signIn(profileForLogin(values.email.trim()));
-      toast.success("Welcome back", "Your demo workspace is ready.");
-      router.push("/dashboard");
-    }, 420);
   };
 
-  const handleDemo = () => {
-    setLoading(true);
-    window.setTimeout(() => {
-      sessionActions.signInDemo();
-      toast.info("Demo workspace ready", "Eight surveys and 1,196 responses are waiting.");
+  const handleDemo = async () => {
+    setDemoLoading(true);
+    try {
+      await sessionActions.signInDemo();
+      toast.info("Demo workspace ready", "Eight surveys and sample responses are waiting.");
       router.push("/dashboard");
-    }, 320);
+    } catch (error) {
+      toast.error(
+        "Could not open the demo",
+        error instanceof Error ? error.message : "Check your connection and try again.",
+      );
+    } finally {
+      setDemoLoading(false);
+    }
   };
+
+  const loading = isSubmitting || demoLoading;
 
   return (
     <div>
       <AuthHeading
         eyebrow="Welcome back"
         title="Good to see you again."
-        description="Sign in to pick up where you left off â€” or step into the demo workspace first."
+        description="Sign in to pick up where you left off — or step into the demo workspace first."
       />
 
       <div className="rounded-xl border border-forest/15 bg-forest-soft/45 p-4">
@@ -111,9 +98,9 @@ export default function LoginPage() {
           size="sm"
           fullWidth
           className="mt-3 bg-surface"
-          loading={loading}
+          loading={demoLoading}
           onClick={handleDemo}
-          iconLeft={!loading ? <Icon name="play" size={13} /> : undefined}
+          iconLeft={!demoLoading ? <Icon name="play" size={13} /> : undefined}
         >
           Open the demo workspace
         </Button>
@@ -127,32 +114,38 @@ export default function LoginPage() {
         <span className="h-px flex-1 bg-line" />
       </div>
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-4">
-        <FormField label="Email address" htmlFor="login-email" required error={errors.email}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+        <FormField
+          label="Email address"
+          htmlFor="login-email"
+          required
+          error={errors.email?.message}
+        >
           <Input
             id="login-email"
-            name="email"
             type="email"
             autoComplete="email"
             placeholder="you@company.com"
-            value={values.email}
-            onChange={(event) => update("email", event.target.value)}
             invalid={Boolean(errors.email)}
             aria-describedby={errors.email ? "login-email-error" : undefined}
             prefix={<Icon name="mail" size={14} />}
+            {...register("email")}
           />
         </FormField>
 
-        <FormField label="Password" htmlFor="login-password" required error={errors.password}>
+        <FormField
+          label="Password"
+          htmlFor="login-password"
+          required
+          error={errors.password?.message}
+        >
           <PasswordInput
             id="login-password"
-            name="password"
             autoComplete="current-password"
             placeholder="Your password"
-            value={values.password}
-            onChange={(event) => update("password", event.target.value)}
             invalid={Boolean(errors.password)}
             aria-describedby={errors.password ? "login-password-error" : undefined}
+            {...register("password")}
           />
         </FormField>
 
@@ -182,8 +175,8 @@ export default function LoginPage() {
 
       <p className="mt-6 flex items-start gap-2 border-t border-line/70 pt-4 text-[10px] leading-relaxed text-ink-faint">
         <Icon name="info" size={12} className="mt-0.5 shrink-0" />
-        Demo authentication only. Use the shortcut above, or any valid email and a 6+ character
-        password. Nothing is sent to a server.
+        Authentication is handled by Supabase. Your session is stored in secure cookies and stays on
+        this device.
       </p>
     </div>
   );

@@ -1,7 +1,7 @@
-﻿import { Suspense } from "react";
-import { Logo } from "@/app/_components/atoms/logo";
-import { Spinner } from "@/app/_components/atoms/spinner";
-import { BuilderWorkspace } from "@/app/_components/organisms/builder/builder-workspace";
+import { Suspense } from "react";
+import { Logo } from "@/components/atoms/logo";
+import { Spinner } from "@/components/atoms/spinner";
+import { BuilderWorkspace } from "@/features/survey-builder/components/builder-workspace";
 
 function BuilderFallback() {
   return (

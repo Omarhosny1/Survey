@@ -1,36 +1,48 @@
-﻿"use client";
+"use client";
 
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/app/_components/atoms/button";
-import { Icon } from "@/app/_components/atoms/icon";
-import { Input } from "@/app/_components/atoms/input";
-import { AuthHeading } from "@/app/_components/molecules/auth-heading";
-import { FormField } from "@/app/_components/molecules/form-field";
-import { isEmail } from "@/app/_lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Button } from "@/components/atoms/button";
+import { Icon } from "@/components/atoms/icon";
+import { Input } from "@/components/atoms/input";
+import { AuthHeading } from "@/components/molecules/auth-heading";
+import { FormField } from "@/components/molecules/form-field";
+import { useToast } from "@/components/molecules/toast";
+import {
+  forgotPasswordSchema,
+  type ForgotPasswordValues,
+} from "@/features/auth/schemas/auth.schema";
+import { sessionActions } from "@/features/auth/store";
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState<string | undefined>();
+  const toast = useToast();
   const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ForgotPasswordValues>({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: { email: "" },
+  });
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!email.trim()) {
-      setError("Enter the email you signed up with.");
-      return;
-    }
-    if (!isEmail(email.trim())) {
-      setError("That email address doesn't look right.");
-      return;
-    }
-    setError(undefined);
-    setLoading(true);
-    window.setTimeout(() => {
-      setLoading(false);
+  const onSubmit = async (values: ForgotPasswordValues) => {
+    try {
+      await sessionActions.requestPasswordReset(
+        values.email,
+        `${window.location.origin}/reset-password`,
+      );
+      setSubmittedEmail(values.email);
       setSent(true);
-    }, 500);
+    } catch (error) {
+      toast.error(
+        "Could not send the reset email",
+        error instanceof Error ? error.message : "Check your connection and try again.",
+      );
+    }
   };
 
   if (sent) {
@@ -43,20 +55,18 @@ export default function ForgotPasswordPage() {
           Check your inbox.
         </h1>
         <p className="mx-auto mt-3 max-w-[340px] text-[13px] leading-relaxed text-ink-soft">
-          If this were a live deployment, a reset link would be on its way to{" "}
-          <span className="font-medium text-ink">{email.trim()}</span>.
+          If an account exists for{" "}
+          <span className="font-medium text-ink">{submittedEmail}</span>, a password reset link is on
+          its way. Open it to choose a new password.
         </p>
         <div className="mt-5 rounded-lg border border-line bg-cream/60 px-4 py-3 text-left">
           <p className="flex items-start gap-2 text-[10.5px] leading-relaxed text-ink-faint">
             <Icon name="info" size={12} className="mt-0.5 shrink-0" />
-            No email has actually been sent. This is a front-end demo with local data, so there is
-            no mail service connected.
+            Supabase sends this email. In local development you can read it in the Supabase mail
+            catcher instead of a real inbox.
           </p>
         </div>
         <div className="mt-6 space-y-2">
-          <Button href="/reset-password" size="lg" fullWidth>
-            Continue to reset form
-          </Button>
           <Button href="/login" variant="ghost" size="sm" fullWidth>
             Back to sign in
           </Button>
@@ -73,27 +83,27 @@ export default function ForgotPasswordPage() {
         description="Enter the email you use for SurveyLand and we'll point you toward a reset."
       />
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-4">
-        <FormField label="Email address" htmlFor="forgot-email" required error={error}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+        <FormField
+          label="Email address"
+          htmlFor="forgot-email"
+          required
+          error={errors.email?.message}
+        >
           <Input
             id="forgot-email"
-            name="email"
             type="email"
             autoComplete="email"
             autoFocus
             placeholder="you@company.com"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-              setError(undefined);
-            }}
-            invalid={Boolean(error)}
-            aria-describedby={error ? "forgot-email-error" : undefined}
+            invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "forgot-email-error" : undefined}
             prefix={<Icon name="mail" size={14} />}
+            {...register("email")}
           />
         </FormField>
 
-        <Button type="submit" size="lg" fullWidth loading={loading} disabled={loading}>
+        <Button type="submit" size="lg" fullWidth loading={isSubmitting} disabled={isSubmitting}>
           Send reset instructions
         </Button>
       </form>
@@ -110,7 +120,7 @@ export default function ForgotPasswordPage() {
 
       <p className="mt-6 flex items-start gap-2 border-t border-line/70 pt-4 text-[10px] leading-relaxed text-ink-faint">
         <Icon name="info" size={12} className="mt-0.5 shrink-0" />
-        Demo only â€” no email is sent. You can continue to the reset form to preview the flow.
+        We will only send a reset email if the address belongs to an existing account.
       </p>
     </div>
   );

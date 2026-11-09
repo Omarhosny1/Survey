@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { LandingNav } from "@/app/_components/organisms/landing/landing-nav";
-import { LandingHero } from "@/app/_components/organisms/landing/landing-hero";
-import { FeatureBento } from "@/app/_components/organisms/landing/feature-bento";
+import { LandingNav } from "@/components/organisms/landing/landing-nav";
+import { LandingHero } from "@/components/organisms/landing/landing-hero";
+import { FeatureBento } from "@/components/organisms/landing/feature-bento";
 import {
   HowItWorks,
   Manifesto,
   TemplateLibrary,
-} from "@/app/_components/organisms/landing/landing-story";
-import { Faq, Pricing } from "@/app/_components/organisms/landing/landing-pricing";
-import { FinalCta, LandingFooter } from "@/app/_components/organisms/landing/landing-footer";
+} from "@/components/organisms/landing/landing-story";
+import { Faq, Pricing } from "@/components/organisms/landing/landing-pricing";
+import { FinalCta, LandingFooter } from "@/components/organisms/landing/landing-footer";
 
 export const metadata: Metadata = {
   title: "Surveys that feel like a conversation",
   description:
-    "SurveyLand is a considered survey platform: write better questions, share them beautifully, and turn answers into clear decisions. Explore the local demo workspace.",
+    "SurveyLand is a considered survey platform: write better questions, share them beautifully, and turn answers into clear decisions. Start your own workspace.",
 };
 
 const audiences = [

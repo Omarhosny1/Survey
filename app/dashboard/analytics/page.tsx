@@ -1,5 +1,5 @@
-﻿import { Suspense } from "react";
-import { AnalyticsView } from "@/app/_components/organisms/analytics-view";
+import { Suspense } from "react";
+import { AnalyticsView } from "@/features/analytics/components/analytics-view";
 
 function AnalyticsFallback() {
   return (

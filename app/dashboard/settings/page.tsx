@@ -1,9 +1,10 @@
-﻿import type { Metadata } from "next";
-import { SettingsView } from "@/app/_components/organisms/settings-view";
+import type { Metadata } from "next";
+import { SettingsView } from "@/features/settings/components/settings-view";
 
 export const metadata: Metadata = {
   title: "Settings",
 };
+export const instant = false
 
 export default function SettingsPage() {
   return <SettingsView />;
